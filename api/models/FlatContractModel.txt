@@ -1,0 +1,27 @@
+/*
+//  The following is one-to-many pattern for saving smart contract related artifacts
+//  needed for the DApp. 
+*/
+'use strict';
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
+var baandaContractSchame = new Schema(
+    {
+        baanda_id: { type: Number, required: true },     // This will be provided (Not Mongo _id). This is tied to 
+                                                         // DCCS and would  be unique for life. One can change 
+                                                         // email or some other code in future. It is like SSN but
+                                                         // for the global population  
+        email: { type: String, required: true },
+        contract_name: { type: String, required: true },
+        contract_version: { type: Number, required: true },
+        contract_type: { type: String, required: true },
+        abi: { type: String, required: true },
+        contract_address: { type: String, required: true },
+        txn_hash: { type: String, required: true },
+        create_time: {type: date, default: Date.now}
+    }
+);
+
+var ContractDoc = mongoose.model('ContractDoc', baandaContractSchame);
+module.exports = ContractDB;
